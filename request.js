@@ -292,7 +292,7 @@ Request.prototype.init = function (options) {
     if (self.uri.port) {
       if ((self.uri.port === '80' && self.uri.protocol === 'http:') ||
           (self.uri.port === '443' && self.uri.protocol === 'https:')) {
-        self.setHeader(hostHeaderName, self.uri.hostname)
+        self.setHeader(hostHeaderName, self.uri.hostname + ':' + self.uri.port)
       }
     }
     self.setHost = true
