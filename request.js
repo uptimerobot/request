@@ -18,6 +18,7 @@ var isstream = require('isstream')
 var isTypedArray = require('is-typedarray').strict
 var helpers = require('./lib/helpers')
 var cookies = require('./lib/cookies')
+var inflate = require('./lib/inflate')
 var getProxyFromURI = require('./lib/getProxyFromURI')
 var Querystring = require('./lib/querystring').Querystring
 var Har = require('./lib/har').Har
@@ -1028,7 +1029,7 @@ Request.prototype.onRequestResponse = function (response) {
         responseContent = zlib.createGunzip(zlibOptions)
         response.pipe(responseContent)
       } else if (contentEncoding === 'deflate') {
-        responseContent = zlib.createInflate(zlibOptions)
+        responseContent = inflate.createInflate(zlibOptions)
         response.pipe(responseContent)
       } else {
         // Since previous versions didn't check for Content-Encoding header,
